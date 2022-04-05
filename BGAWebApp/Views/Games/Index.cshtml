@@ -1,0 +1,73 @@
+﻿@model IEnumerable<BGAWebApp.Models.Game>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Games</h1>
+
+<form asp-controller="Games" asp-action="Index" method="get">
+<p>
+    <label for="numPlayers">Number of players:</label>
+    <input type="text" name="numPlayers" />
+</p>
+@Html.RadioButton("numQuality", "best") Best <br />
+@Html.RadioButton("numQuality", "recommend") Recommended + Best <br />
+@Html.RadioButton("numQuality", "support") Supported + Recommended + Best <br />
+<input type="submit" value="Filter" />
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            @if (ViewBag.numPlayers != null)
+            {
+                <th>
+                    Quality at @ViewBag.numPlayers players
+                </th>
+            }
+           
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <a href="@Html.DisplayFor(modelItem => item.Link)">@Html.DisplayFor(modelItem => item.Title)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            @if (ViewBag.numPlayers == null)
+            {
+                    
+            }
+            else if (item.BestCount!.Contains(ViewBag.numPlayers))
+                {
+                    <td id="best">
+                        <span>Best!</span>
+                    </td>
+                }
+            else if (item.RecommendCount!.Contains(ViewBag.numPlayers))
+                {
+                    <td id="recommend">
+                        <span>Recommended</span>
+                    </td>
+
+                }
+            else if (item.SupportCount!.Contains(ViewBag.numPlayers))
+                {
+                    <td id="support">
+                        <span>Supported</span>
+                    </td>
+                }
+        </tr>
+}
+    </tbody>
+</table>

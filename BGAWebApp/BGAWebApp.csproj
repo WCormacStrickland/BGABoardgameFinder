@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\HelloWorld\**" />
+    <Compile Remove="Views\Home\**" />
+    <Content Remove="Views\HelloWorld\**" />
+    <Content Remove="Views\Home\**" />
+    <EmbeddedResource Remove="Views\HelloWorld\**" />
+    <EmbeddedResource Remove="Views\Home\**" />
+    <None Remove="Views\HelloWorld\**" />
+    <None Remove="Views\Home\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\HelloWorldController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Games\Create.cshtml" />
+    <Content Remove="Views\Games\Delete.cshtml" />
+    <Content Remove="Views\Games\Details.cshtml" />
+    <Content Remove="Views\Games\Edit.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.2" />
+  </ItemGroup>
+
+</Project>
